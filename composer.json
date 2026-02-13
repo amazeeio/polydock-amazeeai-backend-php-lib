@@ -16,6 +16,7 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "symfony/http-client": "^7.2"
+        "symfony/http-client": "^7.2",
+        "ext-curl": "*"
     }
 }
