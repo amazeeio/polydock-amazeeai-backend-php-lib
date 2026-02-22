@@ -85,6 +85,24 @@ class Client
         return $this->post('/private-ai-keys', $data);
     }
 
+    public function createPrivateAIKeyToken(int $regionId, string $name, int $userId = 0, int $teamId = 0): array
+    {
+        $data = [
+            'region_id' => $regionId,
+            'name' => $name,
+        ];
+
+        if ($userId > 0) {
+            $data['owner_id'] = $userId;
+        }
+
+        if ($teamId > 0) {
+            $data['team_id'] = $teamId;
+        }
+
+        return $this->post('/private-ai-keys/token', $data);
+    }
+
     public function listPrivateAIKeys(): array
     {
         return $this->get('/private-ai-keys');
