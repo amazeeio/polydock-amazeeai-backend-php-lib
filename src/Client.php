@@ -56,9 +56,14 @@ class Client
         return $this->put('/auth/me/update', $data);
     }
 
-    public function createToken(string $name): array
+    public function createToken(string $name, int $userId = 0): array
     {
-        return $this->post('/auth/token', ['name' => $name]);
+        $data = ['name' => $name];
+        if ($userId > 0) {
+            $data['user_id'] = $userId;
+        }
+
+        return $this->post('/auth/token', $data);
     }
 
     public function listTokens(): array
