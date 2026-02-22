@@ -12,8 +12,11 @@ class Client
 
     private array $headers;
 
-    public function __construct(string $baseUrl, private readonly ?string $accessToken = null, private readonly bool $debug = false)
-    {
+    public function __construct(
+        string $baseUrl,
+        private readonly ?string $accessToken = null,
+        private readonly bool $debug = false
+    ) {
         $this->baseUrl = rtrim($baseUrl, '/');
         $this->headers = [
             'Content-Type' => 'application/json',
@@ -195,12 +198,12 @@ class Client
 
         $this->printDebug("Method: {$method}");
         $this->printDebug("Path: {$path}");
-        $this->printDebug('Data: '.json_encode($data));
-        $this->printDebug('Query: '.json_encode($query));
+        $this->printDebug('Data: ' . json_encode($data));
+        $this->printDebug('Query: ' . json_encode($query));
 
-        $url = $this->baseUrl.$path;
+        $url = $this->baseUrl . $path;
         if (! empty($query)) {
-            $url .= '?'.http_build_query($query);
+            $url .= '?' . http_build_query($query);
         }
 
         $ch = curl_init();
@@ -213,7 +216,7 @@ class Client
             $headers[] = "{$key}: {$value}";
         }
 
-        $this->printDebug('Headers: '.json_encode($headers));
+        $this->printDebug('Headers: ' . json_encode($headers));
 
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
@@ -228,7 +231,7 @@ class Client
         curl_close($ch);
 
         $decodedResponse = json_decode($response, true);
-        $this->printDebug('Decoded Response: '.json_encode($decodedResponse));
+        $this->printDebug('Decoded Response: ' . json_encode($decodedResponse));
 
         if ($statusCode < 200 || $statusCode >= 300) {
             throw new HttpException(
@@ -244,7 +247,7 @@ class Client
     private function printDebug(string $message): void
     {
         if ($this->debug) {
-            echo 'amazeeai-backend-client-php: '.$message."\n";
+            echo 'amazeeai-backend-client-php: ' . $message . "\n";
         }
     }
 }

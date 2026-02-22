@@ -6,8 +6,11 @@ namespace FreedomtechHosting\PolydockAmazeeAIBackendClient\Exception;
 
 class HttpException extends \RuntimeException
 {
-    public function __construct(private readonly int $statusCode, string $message = '', private readonly ?array $response = null)
-    {
+    public function __construct(
+        private readonly int $statusCode,
+        string $message = '',
+        private readonly ?array $response = null
+    ) {
         parent::__construct($message);
     }
 
