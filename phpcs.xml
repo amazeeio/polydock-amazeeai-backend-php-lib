@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<ruleset name="polydock-amazeeai-backend-php-lib">
+    <description>PHP CodeSniffer configuration</description>
+
+    <file>src</file>
+
+    <rule ref="PSR12"/>
+</ruleset>
