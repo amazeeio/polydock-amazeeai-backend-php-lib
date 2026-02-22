@@ -207,6 +207,11 @@ class Client
         return $this->get('/users/search', ['email' => $email]);
     }
 
+    public function addUserToTeam(int $userId, int $teamId): array
+    {
+        return $this->post("/users/{$userId}/add-to-team", ['team_id' => $teamId]);
+    }
+
     public function getAuditLogs(): array
     {
         return $this->get('/audit/logs');
