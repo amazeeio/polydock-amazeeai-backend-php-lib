@@ -108,6 +108,35 @@ class Client
         return $this->post('/private-ai-keys/token', $data);
     }
 
+    public function listTeams(bool $includeDeleted = false): array
+    {
+        return $this->get('/teams', ['include_deleted' => $includeDeleted ? 'true' : 'false']);
+    }
+
+    public function getTeam(int $teamId, bool $includeDeleted = false): array
+    {
+        return $this->get("/teams/{$teamId}", ['include_deleted' => $includeDeleted ? 'true' : 'false']);
+    }
+
+    public function createTeam(string $name, string $adminEmail, ?string $phone = null, ?string $billingAddress = null, bool $forceUserKeys = false): array
+    {
+        $data = [
+            'name' => $name,
+            'admin_email' => $adminEmail,
+            'force_user_keys' => $forceUserKeys,
+        ];
+
+        if ($phone !== null && $phone !== '') {
+            $data['phone'] = $phone;
+        }
+
+        if ($billingAddress !== null && $billingAddress !== '') {
+            $data['billing_address'] = $billingAddress;
+        }
+
+        return $this->post('/teams', $data);
+    }
+
     public function listPrivateAIKeys(): array
     {
         return $this->get('/private-ai-keys');
