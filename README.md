@@ -1,3 +1,5 @@
+> **NOTE: Deprecated** — see the [polydock-engine](https://github.com/amazeeio/polydock-engine) repo.
+
 # Polydock amazee.ai Backend PHP Library
 
 The Freedom Tech **amazee.ai Private AI PHP library** provides a simple, object-oriented interface to interact with the amazee.ai backend API.
